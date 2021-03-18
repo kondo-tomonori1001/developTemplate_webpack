@@ -9,6 +9,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // ===== Babel =====
       {
         test:/\.js$/,
         use:[
@@ -18,6 +19,27 @@ module.exports = {
               presets: [
                 "@babel/preset-env",
               ]
+            }
+          }
+        ]
+      },
+      // ===== Sass =====
+      {
+        test: /\.(sc|sa|c)ss$/,
+        use: [
+          //htmlファイルのhead内にcssを展開
+          "style-loader",
+          {
+            loader:'css-loader', 
+            options:{ 
+              url:false 
+            }
+          },
+          //scssをcssにコンパイル
+          {
+            loader:'sass-loader', 
+            options:{
+              implementation:require('sass'),
             }
           }
         ]
